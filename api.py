@@ -27,20 +27,18 @@ class AssistantFnc(llm.FunctionContext):
             Zone.OFFICE: 21,
         }
 
-    @llm.ai_callable(description="get the temperature in a specific room")
-    def get_temperature(
-        self, zone: Annotated[Zone, llm.TypeInfo(description="The specific zone")]
-    ):
-        logger.info("get temp - zone %s", zone)
-        temp = self._temperature[Zone(zone)]
-        return f"The temperature in the {zone} is {temp}C"
-
-    @llm.ai_callable(description="set the temperature in a specific room")
-    def set_temperature(
+    @llm.ai_callable(
+        description="Данная функция нужна для работы с таск-менеджером YouGile. Любые действия с задачами выполняются с её помощью."
+    )
+    def task_manager(
         self,
-        zone: Annotated[Zone, llm.TypeInfo(description="The specific zone")],
-        temp: Annotated[int, llm.TypeInfo(description="The temperature to set")],
+        user_task: Annotated[
+            str,
+            llm.TypeInfo(
+                description="Действие, которое необходимо выполнить с задачами"
+            ),
+        ],
     ):
-        logger.info("set temo - zone %s, temp: %s", zone, temp)
-        self._temperature[Zone(zone)] = temp
-        return f"The temperature in the {zone} is now {temp}C"
+        logger.info("user_task: %s", user_task)
+        answer = "Задача 1234 выполнена."  # TODO вызов работы с бразуером
+        return f"Отчёт по задаче: {answer}"
