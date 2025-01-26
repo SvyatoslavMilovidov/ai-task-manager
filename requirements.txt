@@ -2,3 +2,7 @@ livekit-agents>=0.8.7
 livekit-plugins-openai>=0.8.1
 livekit-plugins-silero>=0.6.4
 python-dotenv~=1.0
+browser-use==0.1.19
+pyperclip==1.9.0
+gradio==5.9.1
+langchain-openai==0.2.14
